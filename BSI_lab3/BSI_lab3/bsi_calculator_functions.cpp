@@ -1,8 +1,14 @@
 #include <cmath>
 
+double ex_0206_a_device(double t_years) {
+	const double failure_rate = 0.7;
+	return 1 - std::exp(-failure_rate * t_years);
+
+}
+
 double ex_0207_car_trip(double km_distance) {
 	const double failure_rate = 0.0001;
-	return 100 - km_distance * failure_rate;
+	return 1 - std::exp(-failure_rate * km_distance);
 }
 
 double ex_0208_airliner_a(double MTTF_t_hrs, int hrs) {
@@ -20,3 +26,6 @@ double ex_0208_airliner_b(double MTTF_t_hrs, double desired_reliability) {
 
 	return time;
 }
+
+
+
