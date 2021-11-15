@@ -20,7 +20,6 @@ double ex_0208_airliner_a(double MTTF_t_hrs, int hrs) {
 
 }
 
-//TODO
 double ex_0208_airliner_b(const double MTTF_t_hrs, const double desired_reliability) {
 	double time = -std::log(desired_reliability) * MTTF_t_hrs;
 
