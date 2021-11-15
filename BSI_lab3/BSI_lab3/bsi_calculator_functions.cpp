@@ -1,4 +1,6 @@
 #include <cmath>
+#include <vector>
+#include <sstream>
 
 double ex_0206_a_device(double t_years) {
 	const double failure_rate = 0.7;
@@ -27,5 +29,13 @@ double ex_0208_airliner_b(double MTTF_t_hrs, double desired_reliability) {
 	return time;
 }
 
+double ex_0204_failure_rate(double reliability, int time) {
+	double MTBF = -time / std::log(reliability);
+
+	return MTBF;
+}
+double ex_0204_mtbf(double failure_rate) {
+	return 1 / failure_rate;
+}
 
 
