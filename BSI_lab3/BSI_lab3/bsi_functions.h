@@ -26,6 +26,8 @@ int max_comp_series_system(double min_sys_rel, double comp_rel) {
 			break;
 		count++;
 	} while (true);
+
+	return count;
 }
 
 
