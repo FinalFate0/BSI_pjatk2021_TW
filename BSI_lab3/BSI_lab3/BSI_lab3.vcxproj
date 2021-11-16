@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="bsi_calculator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bsi_exercises.h" />
