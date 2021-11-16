@@ -11,6 +11,13 @@ const double EX28_MTTF = 1140;
 const double EX27_FR = 0.0001;
 const double EX26_FR = 0.7;
 
+const std::string desc_0204 = "\t\tEstimate the maximum permissible failure rate and\n \t\tminimum MTBF for a device that has to have\n \t\treliability R for time t";
+const std::string desc_0207 = "\t\tA car has a failure rate of 0.0001/km\n \t\tCalculate the reliability that the car\n \t\t will reach s kilometers twithout accident ";
+const std::string desc_0208a = "\t\tThe weather radar system of an airplane has an MTTF of 1140 hours\n \t\tCalculate probability of failure during t hour flight";
+const std::string desc_0208b = "\t\tThe weather radar system of an airplane has an MTTF of 1140 hours\n \t\tCalculate the maximum flight duration\n \t\t that the reliability doesn't drop below R";
+const std::string desc_0316 = "\t\tCalculate the reliability of a system that consists of n identical elements\n \t\tof which k must remain working\n \t\tgiven that the reliability of each component is equal to R";
+const std::string desc_0318 = "\t\tCalculate maximum number of identical components in a series system given that\n \t\tthe reliability of each component is equal to R\n \t\t and the minimum system reliability is R";
+
 /**
 * This function walks the user through the exercise 2.4
 * as the user provides the necessary reliability and time values

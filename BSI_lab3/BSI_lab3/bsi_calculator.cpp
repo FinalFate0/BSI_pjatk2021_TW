@@ -7,20 +7,16 @@
 #include "bsi_exercises.h"
 #include "bsi_functions.h"
 
-const std::string desc_0204 = "\t\tEstimate the maximum permissible failure rate and\n \t\tminimum MTBF for a device that has to have\n \t\treliability R for time t";
-const std::string desc_0207 = "\t\tA car has a failure rate of 0.0001/km\n \t\tCalculate the reliability that the car\n \t\t will reach s kilometers twithout accident ";
-const std::string desc_0208a = "\t\tThe weather radar system of an airplane has an MTTF of 1140 hours\n \t\tCalculate probability of failure during t hour flight";
-const std::string desc_0208b = "\t\tThe weather radar system of an airplane has an MTTF of 1140 hours\n \t\tCalculate the maximum flight duration\n \t\t that the reliability doesn't drop below R";
-const std::string desc_0316 = "\t\tCalculate the reliability of a system that consists of n identical elements\n \t\t";
-
 
 int main() {
 	std::cout << "Welcome -> This is your safe(ty) space!" << std::endl
+		<< "========================================" << std::endl
 		<< " ______	       ________	    ______" << std::endl
-		<< "||    \\\\      /   ____/    |__  __|"<< std::endl
+		<< "||    \\\\      /   ____/    |__  __|" << std::endl
 		<< "||____//      \\___  \\	     | 	|" << std::endl
 		<< "||    \\\\     ___ /  /       _|  |_" << std::endl
-		<< "||____//    |______/       |______|" << std::endl;
+		<< "||____//    |______/       |______|" << std::endl
+		<< "========================================" << std::endl;
 
 	std::cout << std::endl;
 		bool keep_going = true;
@@ -34,10 +30,15 @@ int main() {
 			<< "1 - exercise 4 from set 2" << std::endl
 			<< desc_0204 << std::endl
 			<< "2 - exercise 7 from set 2" << std::endl
+			<< desc_0207 << std::endl
 			<< "3 - exercise 8a from set 2" << std::endl
+			<< desc_0208a << std::endl
 			<< "4 - exercise 8b from set 2" << std::endl
+			<< desc_0208b << std::endl
 			<< "5 - exercise 16 from set 3" << std::endl
+			<< desc_0316 << std::endl
 			<< "6 - exercise 18 from set 3" << std::endl
+			<< desc_0318 << std::endl
 			<< "============================"<< std::endl
 			<< "Please provide your answer: ";
 		std::cin >> ex_str;
