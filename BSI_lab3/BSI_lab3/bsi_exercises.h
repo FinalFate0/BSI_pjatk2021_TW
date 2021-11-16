@@ -149,7 +149,7 @@ void ex_0208_a() {
 		)
 	);
 
-	std::cout << std::endl << "Probability of failure during a " << t_hr << "-hour flight:" << u_rel * 100 << "%" << std::endl;
+	std::cout << std::endl << "Probability of failure during a " << t_hr << "-hour flight: " << u_rel * 100 << "%" << std::endl;
 
 	return;
 }
@@ -182,7 +182,7 @@ void ex_0208_b() {
 	}
 	max_t = max_operation_time(EX28_MTTF, des_rel);
 
-	std::cout << std::endl << "Maximum duration of a flight with reliability >= " << des_rel << ":" << max_t << " hours" << std::endl;
+	std::cout << std::endl << "Maximum duration of a flight with reliability >= " << des_rel << ": " << max_t << " hours" << std::endl;
 
 	return;
 }
