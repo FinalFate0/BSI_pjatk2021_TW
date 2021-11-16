@@ -23,7 +23,7 @@ int main() {
 		int exercise = 0;
 		std::string ex_str;
 		std::cout
-			<< "What execrise would you like to do?" << std::endl
+			<< "What exercise would you like to do?" << std::endl
 			<< "0 - I don't want to do math :(   =>  finish program" << std::endl
 			<< "1 - exercise 4 from set 2" << std::endl
 			<< "2 - exercise 7 from set 2" << std::endl
@@ -32,7 +32,7 @@ int main() {
 			<< "5 - exercise 16 from set 3" << std::endl
 			<< "6 - exercise 18 from set 8" << std::endl
 			<< "============================"<< std::endl
-			<< "Please provide your ansewer: ";
+			<< "Please provide your answer: ";
 		std::cin >> ex_str;
 		try {
 			exercise = std::stoi(ex_str);
@@ -52,6 +52,22 @@ int main() {
 			case 1:
 				ex_0204();
 				break;
+			case 2:
+				ex_0207();
+				break;
+			case 3:
+				ex_0208_a();
+				break;
+			case 4:
+				ex_0208_b();
+				break;
+			case 5:
+				ex_0316();
+				break;
+			case 6:
+				ex_0318();
+				break;
+			default:
 			case 0:
 				keep_going = false;
 		}

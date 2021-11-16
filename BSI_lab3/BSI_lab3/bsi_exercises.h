@@ -240,7 +240,7 @@ void ex_0318() {
 	std::cout << "Please provide the reliability of a single component - value between (0, 1): ";
 	std::cin >> comp_rel_str;
 	try {
-		comp_rel = std::stoi(comp_rel_str);
+		comp_rel = std::stod(comp_rel_str);
 		if (comp_rel >= 1 || comp_rel <= 0) {
 			throw std::out_of_range("");
 		}
