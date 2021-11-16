@@ -7,7 +7,11 @@
 #include "bsi_exercises.h"
 #include "bsi_functions.h"
 
-std::string desc_0204 = "Estimate the maximum permissible failure rate and\n minimum MTBF for a device that has to have\n reliability R for time t";
+const std::string desc_0204 = "\t\tEstimate the maximum permissible failure rate and\n \t\tminimum MTBF for a device that has to have\n \t\treliability R for time t";
+const std::string desc_0207 = "\t\tA car has a failure rate of 0.0001/km\n \t\tCalculate the reliability that the car\n \t\t will reach s kilometers twithout accident ";
+const std::string desc_0208a = "\t\tThe weather radar system of an airplane has an MTTF of 1140 hours\n \t\tCalculate probability of failure during t hour flight";
+const std::string desc_0208b = "\t\tThe weather radar system of an airplane has an MTTF of 1140 hours\n \t\tCalculate the maximum flight duration\n \t\t that the reliability doesn't drop below R";
+const std::string desc_0316 = "\t\tCalculate the reliability of a system that consists of n identical elements\n \t\t";
 
 
 int main() {
@@ -28,7 +32,7 @@ int main() {
 			<< "What exercise would you like to do?" << std::endl
 			<< "0 - I don't want to do math :(   =>  finish program" << std::endl
 			<< "1 - exercise 4 from set 2" << std::endl
-			<< "\t\t" << desc_0204 << std::endl
+			<< desc_0204 << std::endl
 			<< "2 - exercise 7 from set 2" << std::endl
 			<< "3 - exercise 8a from set 2" << std::endl
 			<< "4 - exercise 8b from set 2" << std::endl
