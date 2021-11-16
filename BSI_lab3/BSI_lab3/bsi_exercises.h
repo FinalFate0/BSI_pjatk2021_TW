@@ -11,7 +11,11 @@ const double EX28_MTTF = 1140;
 const double EX27_FR = 0.0001;
 const double EX26_FR = 0.7;
 
-
+/**
+* This function walks the user through the exercise 2.4
+* as the user provides the necessary reliability and time values
+* and displays the results of the calculations.
+*/
 void ex_0204() {
 	std::string rel_string = "";
 	double reliability = 0;
@@ -69,6 +73,11 @@ void ex_0204() {
 
 }
 
+/**
+* This function walks the user through the exercise 2.7
+* as the user provides the necessary distance value
+* and displays the results of the calculations.
+*/
 void ex_0207() {
 	double rel = 0;
 	double km = 0;
@@ -98,6 +107,11 @@ void ex_0207() {
 	return;
 }
 
+/**
+* This function walks the user through the exercise 2.8a
+* as the user provides the necessary time value
+* and displays the results of the calculations.
+*/
 void ex_0208_a() {
 
 	double t_hr = 0;
@@ -133,6 +147,11 @@ void ex_0208_a() {
 	return;
 }
 
+/**
+* This function walks the user through the exercise 2.8b
+* as the user provides the necessary reliability value
+* and displays the results of the calculations.
+*/
 void ex_0208_b() {
 	double des_rel = 0;
 	std::string des_rel_s = "";
@@ -161,6 +180,11 @@ void ex_0208_b() {
 	return;
 }
 
+/**
+* This function walks the user through the exercise 3.16
+* as the user provides the necessary total device amount, required device amount and reliability values
+* and displays the results of the calculations.
+*/
 void ex_0316() {
 	double system_reliability = 0;
 
@@ -229,6 +253,11 @@ void ex_0316() {
 	return;
 }
 
+/**
+* This function walks the user through the exercise 3.18
+* as the user provides the necessary component reliability and system reliability values
+* and displays the results of the calculations.
+*/
 void ex_0318() {
 	int n_components = 0;
 
