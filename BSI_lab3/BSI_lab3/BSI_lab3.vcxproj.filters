@@ -23,5 +23,8 @@
     <ClInclude Include="bsi_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bsi_exercises.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
