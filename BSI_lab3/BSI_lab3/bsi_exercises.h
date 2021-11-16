@@ -69,17 +69,6 @@ void ex_0204() {
 
 }
 
-void ex_0206_a() {
-	double ur = 0;
-
-	double t = 0;
-	std::string t_str = "";
-
-	ur = unreliability(
-		reliability(t, EX26_FR)
-	);
-}
-
 void ex_0207() {
 	double rel = 0;
 	double km = 0;
