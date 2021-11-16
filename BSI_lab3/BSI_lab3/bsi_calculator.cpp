@@ -7,6 +7,8 @@
 #include "bsi_exercises.h"
 #include "bsi_functions.h"
 
+std::string desc_0204 = "Estimate the maximum permissible failure rate and\n minimum MTBF for a device that has to have\n reliability R for time t";
+
 
 int main() {
 	std::cout << "Welcome -> This is your safe(ty) space!" << std::endl
@@ -26,11 +28,12 @@ int main() {
 			<< "What exercise would you like to do?" << std::endl
 			<< "0 - I don't want to do math :(   =>  finish program" << std::endl
 			<< "1 - exercise 4 from set 2" << std::endl
+			<< "\t\t" << desc_0204 << std::endl
 			<< "2 - exercise 7 from set 2" << std::endl
 			<< "3 - exercise 8a from set 2" << std::endl
 			<< "4 - exercise 8b from set 2" << std::endl
 			<< "5 - exercise 16 from set 3" << std::endl
-			<< "6 - exercise 18 from set 8" << std::endl
+			<< "6 - exercise 18 from set 3" << std::endl
 			<< "============================"<< std::endl
 			<< "Please provide your answer: ";
 		std::cin >> ex_str;

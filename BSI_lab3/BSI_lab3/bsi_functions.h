@@ -19,7 +19,7 @@
 
 int max_comp_series_system(double min_sys_rel, double comp_rel) {
 	int count = 0;
-	int s_rel = 1;
+	double s_rel = 1;
 	do {
 		s_rel *= comp_rel;
 		if (s_rel < min_sys_rel && min_sys_rel != 0)
