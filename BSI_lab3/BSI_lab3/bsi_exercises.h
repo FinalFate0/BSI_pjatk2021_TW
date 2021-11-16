@@ -208,7 +208,7 @@ void ex_0316() {
 	std::cout << "Please provide the required reliability of a single device - value between (0, 1): ";
 	std::cin >> rel_str;
 	try {
-		single_rel = std::stoi(rel_str);
+		single_rel = std::stod(rel_str);
 		if (single_rel >= 1 || single_rel <= 0) {
 			throw std::out_of_range("");
 		}
@@ -240,7 +240,7 @@ void ex_0318() {
 	std::cout << "Please provide the reliability of a single component - value between (0, 1): ";
 	std::cin >> comp_rel_str;
 	try {
-		comp_rel = std::stoi(comp_rel_str);
+		comp_rel = std::stod(comp_rel_str);
 		if (comp_rel >= 1 || comp_rel <= 0) {
 			throw std::out_of_range("");
 		}
@@ -257,7 +257,7 @@ void ex_0318() {
 	std::cout << "Please provide the minimum required system reliability - value between (0, 1): ";
 	std::cin >> min_rel_str;
 	try {
-		min_rel = std::stoi(min_rel_str);
+		min_rel = std::stod(min_rel_str);
 		if (min_rel >= 1 || min_rel <= 0) {
 			throw std::out_of_range("");
 		}
