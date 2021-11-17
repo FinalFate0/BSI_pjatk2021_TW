@@ -5,7 +5,11 @@
 #include <string>
 
 #include "bsi_exercises.h"
-#include "bsi_functions.h"
+
+/**
+* Main loop of the calculator that asks user for an exercise to calculate. 
+*/
+
 
 
 int main() {
