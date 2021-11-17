@@ -8,6 +8,9 @@
 
 /**
 * Main loop of the calculator that asks user for an exercise to calculate. 
+* 
+* @author Jan Wieczorek 21024
+* @author Tymoteusz Urbanowicz 20149
 */
 
 
