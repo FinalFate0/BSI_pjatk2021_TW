@@ -1,5 +1,5 @@
 # Hello! This folder contains files from the https://github.com/id-Software/DOOM-3 repository.
-They are used as examples for CERT C++ specification noncompliance.
+They are used as examples of CERT C++ specification noncompliance.
 (Examples may be a bit far fetched.) 
 
 ## First example - improper header define - https://github.com/id-Software/DOOM-3/blob/master/neo/idlib/math/Math.h
