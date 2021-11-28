@@ -1,0 +1,71 @@
+diff --git a/BSI_patch/Math.h b/BSI_patch/Math.h
+index ac5ad61..6793a43 100644
+--- a/BSI_patch/Math.h
++++ b/BSI_patch/Math.h
+@@ -18,8 +18,8 @@ If you have questions concerning this license or the applicable additional terms
+ ===========================================================================
+ */
+ 
+-#ifndef __MATH_MATH_H__
+-#define __MATH_MATH_H__
++#ifndef MATH_MATH_H
++#define MATH_MATH_H
+ 
+ #ifdef MACOS_X
+ // for square root estimate instruction
+@@ -918,4 +918,4 @@ ID_INLINE int idMath::FloatHash( const float *array, const int numFloats ) {
+ 	return hash;
+ }
+ 
+-#endif /* !__MATH_MATH_H__ */
+\ No newline at end of file
++#endif /* !MATH_MATH_H */
+\ No newline at end of file
+diff --git a/BSI_patch/badfileio.cpp b/BSI_patch/badfileio.cpp
+index eb705d6..3ff7753 100644
+--- a/BSI_patch/badfileio.cpp
++++ b/BSI_patch/badfileio.cpp
+@@ -21,4 +21,5 @@ int main(){
+         }
+ 
+     }
++    inputfile.close();
+ }
+\ No newline at end of file
+diff --git a/BSI_patch/win_net.cpp b/BSI_patch/win_net.cpp
+index 6f44f3f..fb2e825 100644
+--- a/BSI_patch/win_net.cpp
++++ b/BSI_patch/win_net.cpp
+@@ -22,9 +22,14 @@ If you have questions concerning this license or the applicable additional terms
+ 
+ #include <iptypes.h>
+ #include <iphlpapi.h>
++#include <random>
+ 
+ #include "win_local.h"
+ 
++std::uniform_int_distribution<int> distribution(0, RAND_MAX);
++std::random_device rd;
++std::mt19937 engine(rd());
++
+ static WSADATA	winsockdata;
+ static bool	winsockInitialized = false;
+ static bool usingSocks = false;
+@@ -936,7 +941,7 @@ bool idPort::GetPacket( netadr_t &from, void *data, int &size, int maxSize ) {
+ 		}
+ 
+ 		if ( net_forceDrop.GetInteger() > 0 ) {
+-			if ( rand() < net_forceDrop.GetInteger() * RAND_MAX / 100 ) {
++			if ( distribution(engine) < net_forceDrop.GetInteger() * RAND_MAX / 100 ) {
+ 				continue;
+ 			}
+ 		}
+@@ -1018,7 +1023,7 @@ void idPort::SendPacket( const netadr_t to, const void *data, int size ) {
+ 	bytesWritten += size;
+ 
+ 	if ( net_forceDrop.GetInteger() > 0 ) {
+-		if ( rand() < net_forceDrop.GetInteger() * RAND_MAX / 100 ) {
++		if ( distribution(engine) < net_forceDrop.GetInteger() * RAND_MAX / 100 ) {
+ 			return;
+ 		}
+ 	}
