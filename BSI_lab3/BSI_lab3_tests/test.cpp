@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "../BSI_lab3/bsi_exercises.h"
+#include <cfenv>
 
 
 TEST(factorialTest, PositiveInput) {
@@ -53,13 +54,20 @@ TEST(parallelSystem, ZeroReliabilityIsZeroSysReliability) {
 	EXPECT_DOUBLE_EQ(parallel_sys_rel_k_out_of_n(4, 5, 0), 0);
 }
 
-
 TEST(seriesSystem, MinRelZeroRezultsInZero) {
 	EXPECT_EQ(max_comp_series_system(0.85, 0.0), 0);
 }
 
 TEST(seriesSystem, CompRelEqalToSysResultsInOneComp) {
 	EXPECT_EQ(max_comp_series_system(0.9, 0.9), 1);
+}
+
+TEST(seriesSystem, MinSysRelZeroRezultsInZero) {
+	EXPECT_EQ(max_comp_series_system(0.85, 0.0), 0);
+}
+
+TEST(maxOperationTime, LnZeroGivesInfinity) {
+	EXPECT_DOUBLE_EQ(max_operation_time(10, 0), std::numeric_limits<double>::infinity());
 }
 
 TEST(ex0204, WrongFormat) {
