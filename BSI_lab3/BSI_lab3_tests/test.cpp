@@ -61,3 +61,106 @@ TEST(seriesSystem, MinRelZeroRezultsInZero) {
 TEST(seriesSystem, CompRelEqalToSysResultsInOneComp) {
 	EXPECT_EQ(max_comp_series_system(0.9, 0.9), 1);
 }
+
+TEST(ex0204, WrongFormat) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("qwerty");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0204();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide the required reliability - value between (0, 1): \nWrong data format!\n");
+}
+
+TEST(ex0204, OutOfRange) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("2");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0204();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide the required reliability - value between (0, 1): \nValue out of range!\n");
+}
+TEST(ex0207, WrongFormat) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("qwerty");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0207();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide desired distance - value must be positive: \nWrong data format!\n");
+}
+
+TEST(ex0207, OutOfRange) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("-1");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0207();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide desired distance - value must be positive: \nValue out of range!\n");
+}
+TEST(ex0208a, WrongFormat) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("qwerty");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0208_a();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide desired time in hours - value must be positive: \nWrong data format!\n");
+}
+
+TEST(ex0208a, OutOfRange) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("-1");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0208_a();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide desired time in hours - value must be positive: \nValue out of range!\n");
+}
+TEST(ex0208b, WrongFormat) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("qwerty");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0208_b();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide desired reliability - value between (0, 1): \nWrong data format!\n");
+}
+
+TEST(ex0208b, OutOfRange) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("2");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0208_b();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide desired reliability - value between (0, 1): \nValue out of range!\n");
+}
+TEST(ex0316, WrongFormat) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("qwerty");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0316();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide the total amount devices - value must be positive: \nWrong data format!\n");
+}
+
+TEST(ex0316, OutOfRange) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("-1");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0316();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide the total amount devices - value must be positive: \nValue out of range!\n");
+}
+TEST(ex0318, WrongFormat) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("qwerty");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0318();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide the reliability of a single component - value between (0, 1): \nWrong data format!\n");
+}
+
+TEST(ex0318, OutOfRange) {
+	testing::internal::CaptureStdout();
+	std::istringstream iss("2");
+	std::cin.rdbuf(iss.rdbuf());
+	ex_0318();
+	std::string output = testing::internal::GetCapturedStdout();
+	ASSERT_EQ(output, "Please provide the reliability of a single component - value between (0, 1): \nValue out of range!\n");
+}
