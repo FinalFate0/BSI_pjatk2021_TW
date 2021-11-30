@@ -2,6 +2,13 @@
 #include "../BSI_lab3/bsi_exercises.h"
 #include <cfenv>
 
+/**
+*Tests for calculator
+* 
+* @author Jan Wieczorek 21024
+* @author Tymoteusz Urbanowicz 20149
+*/
+
 
 TEST(factorialTest, PositiveInput) {
 	EXPECT_EQ(factorial(5), 120);
