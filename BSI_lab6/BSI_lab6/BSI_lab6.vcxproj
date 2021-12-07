@@ -140,15 +140,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cryptopp_test.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.txt" />
-    <Text Include="Text.txt" />
+    <ClInclude Include="cryptoFunc.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cryptoFunc.h" />
+    <None Include="readme.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

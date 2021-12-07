@@ -136,6 +136,7 @@ int main(int argc, char* argv[]){
         }
         else {
             for (auto f : files) {
+                std::cout << f << std::endl;
                 encryptFile(f);
             }
         }

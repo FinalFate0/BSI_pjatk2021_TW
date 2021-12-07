@@ -8,3 +8,7 @@ Executed with a path to a file decrypts it.
  * github: https://github.com/weidai11/cryptopp
  
 Also this tutorial came in handy: https://petanode.com/posts/brief-introduction-to-cryptopp/
+
+### Sample output
+ 'very important directory' contains encrypted files
+ original message can be found in its copy 

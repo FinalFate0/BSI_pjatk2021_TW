@@ -1,4 +1,1 @@
-Another
-very important
-multiline 
-message
+Another very important multiline message
