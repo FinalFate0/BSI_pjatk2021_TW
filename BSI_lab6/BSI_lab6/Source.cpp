@@ -1,3 +1,10 @@
+/**
+* @author Jan Wieczorek 21024
+* @author Tymoteusz Urbanowicz 20149
+*/
+
+
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -6,11 +13,27 @@
 
 #include "cryptoFunc.h"
 
-
+/** encryption key */
 const std::vector<uint8_t> key = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'i', 'j', 'k', 'l', 'm'};
+/** initialization vector */
 const std::vector<uint8_t> iv = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'i', 'j', 'k', 'l', 'm' };
 
+/**
+* Funtion uses three encryption algorithms:
+* AES
+* RC5
+* IDEA
+* in this order to encrypt a file using key and iv delcared in this file as global variables
+* 
+* 
+* @param[in]    path        file to be encrypted
+* 
+*/
+
 void encryptFile(std::string path) {
+
+
+
     std::string cipherAes, cipherRc5, cipherIdea;
 
     std::fstream file;
@@ -36,6 +59,18 @@ void encryptFile(std::string path) {
     file.close();
     std::cout << cipherIdea << std::endl;
 }
+
+/**
+* Funtion uses three encryption algorithms:
+* IDEA
+* RC5
+* AES
+* in this order to encrypt a file using key and iv delcared in this file as global variables
+*
+*
+* @param[in]    path        file to be decrypted
+*
+*/
 
 void decryptFile(std::string path) {
     std::string recoverAes, recoverRc5, recoverIdea;
@@ -63,6 +98,17 @@ void decryptFile(std::string path) {
     file.close();
 
 }
+
+/**
+* Main function that scans specific directory for files and 
+* if the number of files exceeds 10 encrypts random 10 of them
+* otherwise encrypts them all. If executed with a command line argument
+* function will decrypt previously encrypted by this program file
+* given the command line argument is it's path
+* 
+* @input[in]     argv[1]        file to be decrypted    
+* 
+*/
 
 
 int main(int argc, char* argv[]){

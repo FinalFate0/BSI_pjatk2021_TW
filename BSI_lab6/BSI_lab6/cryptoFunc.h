@@ -12,6 +12,17 @@
 
 #include <string>
 
+/**
+* This function encrypts a string with an AES cipher
+* 
+* @param[in]        input       string to be encrypted
+* @param[in]         key        key to encrypt string with
+* @param[in]          iv        inicialization vector to encrypt string with
+* 
+* @return         cipherAes     encrypted input string
+*
+*/
+
 
 std::string encryptAes(std::string input, std::vector<uint8_t> key, std::vector<uint8_t> iv) {
     std::string cipherAes;
@@ -37,6 +48,17 @@ std::string encryptAes(std::string input, std::vector<uint8_t> key, std::vector<
     return cipherAes;
 }
 
+/**
+* This function encrypts a string with an RC5 cipher
+*
+* @param[in]        input       string to be encrypted
+* @param[in]         key        key to encrypt string with
+* @param[in]          iv        inicialization vector to encrypt string with
+*
+* @return         cipherRc5     encrypted input string
+*
+*/
+
 std::string encryptRc5(std::string input, std::vector<uint8_t> key, std::vector<uint8_t> iv) {
     std::string cipherRc5;
     try
@@ -59,6 +81,18 @@ std::string encryptRc5(std::string input, std::vector<uint8_t> key, std::vector<
     }
     return cipherRc5;
 }
+
+/**
+* This function encrypts a string with an IDEA cipher
+*
+* @param[in]        input       string to be encrypted
+* @param[in]         key        key to encrypt string with
+* @param[in]          iv        inicialization vector to encrypt string with
+*
+* @return        cipherIdea     encrypted input string
+*
+*/
+
 
 std::string encryptIdea(std::string input, std::vector<uint8_t> key, std::vector<uint8_t> iv) {
     std::string cipherIdea;
@@ -83,6 +117,17 @@ std::string encryptIdea(std::string input, std::vector<uint8_t> key, std::vector
     return cipherIdea;
 }
 
+/**
+* This function decrypts a string encrypted with an IDEA cipher
+*
+* @param[in]        input       string to be decrypted
+* @param[in]         key        key to decrypt string with
+* @param[in]          iv        inicialization vector to decrypt string with
+*
+* @return       recoveredIdea   decrypted input string
+*
+*/
+
 std::string decryptIdea(std::string input, std::vector<uint8_t> key, std::vector<uint8_t>iv) {
     std::string recoveredIdea;
 
@@ -106,6 +151,17 @@ std::string decryptIdea(std::string input, std::vector<uint8_t> key, std::vector
 
 }
 
+/**
+* This function decrypts a string encrypted with an Rc5 cipher
+*
+* @param[in]        input       string to be decrypted
+* @param[in]         key        key to decrypt string with
+* @param[in]          iv        inicialization vector to decrypt string with
+*
+* @return       recoveredRc5    decrypted input string
+*
+*/
+
 std::string decryptRc5(std::string input, std::vector<uint8_t> key, std::vector<uint8_t>iv) {
     std::string recoveredRc5;
 
@@ -127,6 +183,17 @@ std::string decryptRc5(std::string input, std::vector<uint8_t> key, std::vector<
 
     return recoveredRc5;
 }
+
+/**
+* This function decrypts a string encrypted with an AES cipher
+*
+* @param[in]        input       string to be decrypted
+* @param[in]         key        key to decrypt string with
+* @param[in]          iv        inicialization vector to decrypt string with
+*
+* @return       recoveredAes    decrypted input string
+*
+*/
 
 std::string decryptAes(std::string input, std::vector<uint8_t> key, std::vector<uint8_t>iv) {
     std::string recoveredAes;

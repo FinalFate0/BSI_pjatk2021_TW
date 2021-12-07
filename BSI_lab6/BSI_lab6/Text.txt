@@ -1,3 +1,0 @@
-hello cryptography
-pierwsza linia
-druga linia
