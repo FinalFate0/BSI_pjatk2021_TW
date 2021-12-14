@@ -1,9 +1,14 @@
+'''This script brute forces a DES encrypted message containing popular swear
+   words in the polish language using all available CPU threads'''
+__author__ = "Tymoteusz Urbanowicz 20149"
+
 from string import ascii_lowercase
 from itertools import product
 from Crypto.Util.Padding import pad, unpad
 from Crypto.Cipher import DES
 import multiprocessing as mp
 import time
+import base64
 
 encrypted_message = b"M\xe9\x07M\x0c\x1f3\xa0\x88L\x08\xde\x9c[\xac\x97;\xe3\xac\x02z\xde\xc7'\xcdx+\xfc\x9b\x0fcr \xed\x0fX\xab\xe7\xed\xba}\xefP\x90-\x92\xb9\xe4+\xc5\xc0\xc4\xc1\x01\xd1oZ\x1eD*\xc6\xf6Ze\xe1\xc8i\xec\x94\xa9\xf0~\xa3\xf1\r]6M\x97\xc8\x80\xce\x1a\x0f\xc9Ky\xd0\x07c=YL\xc1\xff\xb99b\x08\xda\xce\x93\x05\xfc\xe3\x8c\x11\xf7w\xce\xec$\xceu\xb8\xbf\xd5xI\x97\xe1\xe4\xfaK\x11\xb2z\xaaP,Q\xe7\xb7<\xef7\xff\x862\xd0dz^\xb5\r\x89\x8a\xd2d\x8d\xc8\xe7q\xe7\x1e89\x9aN9\x11\xdaHX\xb6\xb0\xe2\x8b^Z\xd3\x87P\xe7;\x87\xd1z^\xa3!\x12g*f\xb1Fe\xdd\x1a\xeb\xde\xc3\x8d\xfd\x99\x7f\xb7\xc4\xdd\x94\xf6\xdd\xd71\x9b\x0e\x04:\x18-\xee}\x0f\xa8#\x15ff\x9a\x9d\xfb\x8fl"
 
@@ -133,34 +138,46 @@ bad_words = ['chuj','chuja', 'chujek', 'chuju', 'chujem', 'chujnia',
 'zjebała', 'zjebala', 'zjebana', 'zjebią', 'zjebali', 'zjeby']
 
 charset = ascii_lowercase
-minrange = 4
-maxrange = 12
 BLOCK_SIZE = 8
+encrypted_message = base64.b64decode(encrypted_message)
 
-def bruteforce(min_range, max_range):
-    for i in range(min_range, max_range+1):
-        for k in product(charset, repeat=i):
-            k = ''.join(k).encode()
-
+def bruteforce(r):
+    '''Brute force key of r character length.'''
+    for k in product(charset, repeat=r):
+        k = ''.join(k).encode()
+        print(k.decode())
+        
+        if r == 8:
+            des = DES.new(k, DES.MODE_ECB)
+        else:
             des = DES.new(pad(k, BLOCK_SIZE), DES.MODE_ECB)
-            decrypted_message = des.decrypt(encrypted_message).decode()
-            if any(bad_word in decrypted_message for bad_word in bad_words):
-                return unpad(k, BLOCK_SIZE).decode()
-    
+            
+        decrypted_message = des.decrypt(pad(encrypted_message, BLOCK_SIZE)).decode('iso8859_2')
+            
+        if any(bad_word in decrypted_message for bad_word in bad_words):
+            
+            return k.decode()
 
-key = ''
-tick=time.time()
+def main():
+    key = ''
+    tick=time.time()
+
+
+    with mp.Pool(5) as pool:
+        for result in pool.imap_unordered(bruteforce, range(4, 8+1)):
+            key = result
+
+
+    if key != '':
+        key = ''.join(key).encode()
+        if len(key) == 8:
+            des = DES.new(key, DES.MODE_ECB)
+        else:
+            des = DES.new(pad(key, BLOCK_SIZE), DES.MODE_ECB)
+        decrypted_message = des.decrypt(pad(encrypted_message, BLOCK_SIZE)).decode('iso8859_2')
+        print("key: " + key.decode())
+        print("message: " + decrypted_message)
+        print("\time elapsed:" + str(time.time()-tick) + " s")
 
 if __name__ == "__main__":
-    with mp.Pool(mp.cpu_count()//2) as pool:
-        for i in range(minrange, maxrange+1):
-            for result in pool.imap_unordered(bruteforce(i, i), range(minrange, maxrange+1)):
-                key = result
-
-if key != '':
-    key = ''.join(key).encode()
-    des = DES.new(pad(key, BLOCK_SIZE), DES.MODE_ECB)
-    decrypted_message = des.decrypt(encrypted_message).decode()
-    print("key: " + unpad(key, BLOCK_SIZE))
-    print("message: " + decrypted_message)     
-    print("\time elapsed:" + str(time.time()-tick) + " s")
+    main()
