@@ -1,5 +1,6 @@
 '''This script brute forces a DES encrypted message containing popular swear
-   words in the polish language using all available CPU threads'''
+   words in the polish language using all available CPU threads.
+   Crypto library used - pycryptodome'''
 __author__ = "Tymoteusz Urbanowicz 20149"
 
 from string import ascii_lowercase
