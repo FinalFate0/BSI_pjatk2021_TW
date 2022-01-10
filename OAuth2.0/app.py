@@ -1,15 +1,19 @@
 import requests
+import os
 from flask import Flask, session, request, abort, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
+from google.oauth2 import id_token
 #from werkzeug.wrappers import request
 from pip._vendor import cachecontrol
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'slqite:///bsiUsers.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bsiUsers.db'
 db = SQLAlchemy(app)
+
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 class User(db.Model):
     username = db.Column(db.String(80), primary_key=True)
@@ -18,13 +22,16 @@ class User(db.Model):
     def __repr__(self) -> str:
         return '<Name %r>' % self.username
 
+db.create_all()
+db.session.commit()
+
 GOOGLE_CLIENT_ID = "78230996300-7n84ekv6lo7kc8d60l5hf2aaroop108u.apps.googleusercontent.com"
 
 flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
     'client_secret.json',
     #scopes=['https://www.googleapis.com/auth/drive.metadata.readonly'])
     scopes=['https://www.googleapis.com/auth/userinfo.profile',
-            'https:://www.googleapis.com/auth/userinfo.email',
+            'https://www.googleapis.com/auth/userinfo.email',
             'openid'])
 
 flow.redirect_uri = 'http://localhost:5000/callback'
@@ -52,16 +59,16 @@ def callback():
     cached_session = cachecontrol.CacheControl(request_session)
     token_request = google.auth.transport.requests.Request(session=cached_session)
 
-    id_info = google.oauth2.id_token.verify_oauth2_token(
+    id_info = id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=token_request,
         audience=GOOGLE_CLIENT_ID
     )
 
-    if not db.session.query(db.exists().where(User.name ==id_info.get('name') )).scalar():
+    if not db.session.query(db.exists().where(User.username ==id_info.get('name') )).scalar():
         u = User(
-            id_info.get('name'),
-            id_info.get('email')
+            username=id_info.get('name'),
+            email=id_info.get('email')
             )
         db.session.add(u)
         db.session.commit()
