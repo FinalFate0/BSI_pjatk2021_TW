@@ -30,7 +30,6 @@ GOOGLE_CLIENT_ID = "78230996300-7n84ekv6lo7kc8d60l5hf2aaroop108u.apps.googleuser
 
 flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
     'client_secret.json',
-    #scopes=['https://www.googleapis.com/auth/drive.metadata.readonly'])
     scopes=['https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email',
             'openid'])
