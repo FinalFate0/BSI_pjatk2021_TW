@@ -29,4 +29,4 @@
 | Timestamp Disclosure - Unix | 200 | LOW | Broken Access Control | A01:2021 | 1345 |
 | X-Content-Type-Options Header Missing | 693 | LOW | not present in 2021 top 10 |    |    |
 | Inf. Disclosure - Sensitive Information in URL | 200 | Informational | Broken Access Control | A01:2021 | 1345 |
-| Inf. Disclosure = Suspicious Comments | 200 | Informational | Broken Access Control | A01:2021 | 1345 |
+| Inf. Disclosure - Suspicious Comments | 200 | Informational | Broken Access Control | A01:2021 | 1345 |
